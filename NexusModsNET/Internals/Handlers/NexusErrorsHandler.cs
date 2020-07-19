@@ -28,14 +28,8 @@ namespace NexusModsNET.Internals.Handlers
 				var responseMessage = response.Content.DeserializeContent<NexusMessage>().Result;
 				switch (response.StatusCode)
 				{
-					case HttpStatusCode.BadRequest:
-						throw new BadRequestException(responseMessage.Message, response.StatusCode);
 					case HttpStatusCode.Forbidden:
 						throw new ForbiddenException(responseMessage.Message, response.StatusCode);
-					case HttpStatusCode.Gone:
-						throw new GoneException(responseMessage.Message, response.StatusCode);
-					case HttpStatusCode.NotFound:
-						throw new NotFoundException(responseMessage.Message, response.StatusCode);
 					case HttpStatusCode.Unauthorized:
 						throw new UnauthorizedException(responseMessage.Message, response.StatusCode);
 					case (HttpStatusCode)429:
