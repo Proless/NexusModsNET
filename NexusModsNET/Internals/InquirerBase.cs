@@ -11,6 +11,13 @@ namespace NexusModsNET.Internals
 		internal INexusModsClient _client;
 		#endregion
 
+		#region Properties
+		/// <summary>
+		/// A manger to get or manage the limits of the API.
+		/// </summary>
+		public QuotaManagement QuotaManagement { get { return _client.QuotaManagement; } }
+		#endregion
+
 		#region Constructors
 		internal InquirerBase(INexusModsClient client)
 		{

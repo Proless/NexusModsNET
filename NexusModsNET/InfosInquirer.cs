@@ -10,10 +10,6 @@ namespace NexusModsNET
 	{
 		#region Properties
 		/// <summary>
-		/// A manger to get or manage the limits of the API.
-		/// </summary>
-		public QuotaManagement QuotaManagement { get { return _client.QuotaManagement; } }
-		/// <summary>
 		/// Routes specific to the current user assigned to this API Key
 		/// </summary>
 		public UserInquirer User { get; }
