@@ -4,7 +4,7 @@ using NexusModsNET.Internals;
 namespace NexusModsNET
 {
 	/// <summary>
-	/// Provides the set of different other Inquirers for all available endpoints
+	/// Combines all other Inquirers for all available endpoints
 	/// </summary>
 	public class InfosInquirer : InquirerBase
 	{
@@ -12,7 +12,7 @@ namespace NexusModsNET
 		/// <summary>
 		/// A manger to get or manage the limits of the API.
 		/// </summary>
-		public QuotaManagement Quota { get { return _client.QuotaManagement; } }
+		public QuotaManagement QuotaManagement { get { return _client.QuotaManagement; } }
 		/// <summary>
 		/// Routes specific to the current user assigned to this API Key
 		/// </summary>
@@ -39,7 +39,7 @@ namespace NexusModsNET
 		/// Provides the set of different other Inquirers for all available endpoints
 		/// </summary>
 		/// <param name="client">The NexusMods client to use for this endpoint</param>
-		public InfosInquirer(NexusModsAPIClient client) : base(client)
+		public InfosInquirer(INexusModsClient client) : base(client)
 		{
 			// Initialize inquirers
 			User = new UserInquirer(client);
