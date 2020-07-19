@@ -12,6 +12,7 @@
 		<PackageProjectUrl>https://github.com/Proless/NexusModsNET</PackageProjectUrl>
 		<PackageTags>nexusmods, api, mods</PackageTags>
 		<PackageReleaseNotes>Initial release</PackageReleaseNotes>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 	</PropertyGroup>
 
 	<ItemGroup>
