@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Net;
 using System.Net.Http;
 using System.Threading;
 using NexusModsNET.Exceptions;
@@ -18,7 +19,7 @@ namespace NexusModsNET.Internals.Handlers
 		/// </summary>
 		/// <param name="responseCallback">A <see cref="Action{T}"/> delegate to process a response message and get the API Limits from the Headers</param>
 		/// <param name="quotaManagement">A class where a custom defined limits will be checked before each call request is sent</param>
-		public QuotaLimitsHandler(Action<HttpResponseMessage> responseCallback, QuotaManagement quotaManagement) : base()
+		internal QuotaLimitsHandler(Action<HttpResponseMessage> responseCallback, QuotaManagement quotaManagement) : base()
 		{
 			_responseCallback = responseCallback ?? throw new ArgumentNullException(nameof(responseCallback), "The response callback delegate can't be null !");
 			_quotaManagement = quotaManagement;
@@ -29,7 +30,7 @@ namespace NexusModsNET.Internals.Handlers
 		/// <param name="handler">The inner handler which is responsible for processing the HTTP response messages</param>
 		/// <param name="responseCallback">A <see cref="Action{T}"/> delegate to process a response message and get the API Limits from the Headers</param>
 		/// <param name="quotaManagement">A class where a custom defined limits will be checked before each call request is sent</param>
-		public QuotaLimitsHandler(HttpMessageHandler handler, Action<HttpResponseMessage> responseCallback, QuotaManagement quotaManagement) : base(handler)
+		internal QuotaLimitsHandler(HttpMessageHandler handler, Action<HttpResponseMessage> responseCallback, QuotaManagement quotaManagement) : base(handler)
 		{
 			_responseCallback = responseCallback ?? throw new ArgumentNullException(nameof(responseCallback), "The response callback delegate can't be null !");
 			_quotaManagement = quotaManagement;
@@ -42,7 +43,7 @@ namespace NexusModsNET.Internals.Handlers
 		{
 			if (_quotaManagement.LimitsExceeded())
 			{
-				throw new QuotaLimitsExceededException("");
+				throw new UserLimitsExceededException($"The Max-Limits of {_quotaManagement.MaxHourlyLimit} hourly and/or the {_quotaManagement.MaxDailyLimit} daily have been reached !", (HttpStatusCode)429);
 			}
 			else
 			{
