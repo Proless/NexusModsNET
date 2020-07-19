@@ -1,15 +1,16 @@
 ﻿using System.Net;
 using System.Net.Http;
 using System.Threading;
+using NexusModsNET.DataModels;
 using NexusModsNET.Exceptions;
 
 namespace NexusModsNET.Internals.Handlers
 {
 	internal class NexusErrorsHandler : MessageProcessingHandler
 	{
-		public NexusErrorsHandler() { }
+		internal NexusErrorsHandler() { }
 
-		public NexusErrorsHandler(HttpMessageHandler innerHandler) : base(innerHandler) { }
+		internal NexusErrorsHandler(HttpMessageHandler innerHandler) : base(innerHandler) { }
 
 		protected override HttpRequestMessage ProcessRequest(HttpRequestMessage request, CancellationToken cancellationToken)
 		{
@@ -24,20 +25,23 @@ namespace NexusModsNET.Internals.Handlers
 			}
 			else
 			{
+				var responseMessage = response.Content.DeserializeContent<NexusMessage>().Result;
 				switch (response.StatusCode)
 				{
 					case HttpStatusCode.BadRequest:
-						throw new BadRequestException(response.ReasonPhrase);
+						throw new BadRequestException(responseMessage.Message, response.StatusCode);
 					case HttpStatusCode.Forbidden:
-						throw new ForbiddenException(response.ReasonPhrase);
+						throw new ForbiddenException(responseMessage.Message, response.StatusCode);
 					case HttpStatusCode.Gone:
-						throw new GoneException(response.ReasonPhrase);
+						throw new GoneException(responseMessage.Message, response.StatusCode);
 					case HttpStatusCode.NotFound:
-						throw new NotFoundException(response.ReasonPhrase);
+						throw new NotFoundException(responseMessage.Message, response.StatusCode);
 					case HttpStatusCode.Unauthorized:
-						throw new UnauthorizedException(response.ReasonPhrase);
+						throw new UnauthorizedException(responseMessage.Message, response.StatusCode);
+					case (HttpStatusCode)429:
+						throw new QuotaLimitsExceededException(responseMessage.Message, response.StatusCode);
 					default:
-						throw new NexusAPIException(response.ReasonPhrase);
+						throw new NexusAPIException(responseMessage.Message, response.StatusCode);
 				}
 			}
 		}
