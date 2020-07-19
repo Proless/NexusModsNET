@@ -124,7 +124,7 @@ namespace NexusModsNET
 		/// </summary>
 		/// <param name="client">The <see cref="NexusModsClient"/> instance to use for initializing the Inquirer factory</param>
 		/// <returns>A new <see cref="InquirerFactory"/> instance</returns>
-		public static IInquirerFactory InitializeNew(INexusModsClient client)
+		public static IInquirerFactory New(INexusModsClient client)
 		{
 			if (client == null) { throw new ArgumentNullException(nameof(client)); }
 			return new InquirerFactory(client);
@@ -134,7 +134,7 @@ namespace NexusModsNET
 		/// </summary>
 		/// <param name="apiKey">A key specific to NexusMods.com account, which must be provided to allow usage of the API</param>
 		/// <returns>A new <see cref="InquirerFactory"/> instance</returns>
-		public static IInquirerFactory InitializeNew(string apiKey)
+		public static IInquirerFactory New(string apiKey)
 		{
 			return new InquirerFactory(NexusModsClient.Create(apiKey));
 		}
@@ -145,7 +145,7 @@ namespace NexusModsNET
 		/// <param name="productName">A product name to send with each request, this is used to construct a UserAgent string</param>
 		/// <param name="productVersion">A product version to send with each request, this is used to construct a UserAgent string</param>
 		/// <returns>A new <see cref="InquirerFactory"/> instance</returns>
-		public static IInquirerFactory InitializeNew(string apiKey, string productName, string productVersion)
+		public static IInquirerFactory New(string apiKey, string productName, string productVersion)
 		{
 			return new InquirerFactory(NexusModsClient.Create(apiKey, productName, productVersion));
 		}
