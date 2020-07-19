@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Net;
 
 namespace NexusModsNET.Exceptions
 {
@@ -11,14 +12,14 @@ namespace NexusModsNET.Exceptions
 		/// <summary>
 		/// <inheritdoc/>
 		/// </summary>
-		public BadRequestException() { }
+		public BadRequestException(HttpStatusCode statusCode) : base(statusCode) { }
 		/// <summary>
 		/// <inheritdoc/>
 		/// </summary>
-		public BadRequestException(string message) : base(message) { }
+		public BadRequestException(string message, HttpStatusCode statusCode) : base(message, statusCode) { }
 		/// <summary>
 		/// <inheritdoc/>
 		/// </summary>
-		public BadRequestException(string message, Exception inner) : base(message, inner) { }
+		public BadRequestException(string message, HttpStatusCode statusCode, Exception inner) : base(message, statusCode, inner) { }
 	}
 }
