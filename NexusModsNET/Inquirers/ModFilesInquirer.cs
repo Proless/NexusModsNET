@@ -17,7 +17,7 @@ namespace NexusModsNET.Inquirers
 		/// File specific routes (E.g. retrieving file information, retrieving download link)
 		/// </summary>
 		/// <param name="client">The NexusMods client to use for this endpoint</param>
-		public ModFilesInquirer(NexusModsAPIClient client) : base(client) { }
+		public ModFilesInquirer(INexusModsClient client) : base(client) { }
 
 		/// <summary>
 		/// Return a list of all files for a specific mod of specific categories

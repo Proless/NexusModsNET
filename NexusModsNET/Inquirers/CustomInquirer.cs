@@ -15,7 +15,7 @@ namespace NexusModsNET.Inquirers
 		/// A custom inquirer which can be used for custom endpoints.
 		/// </summary>
 		/// <param name="client">The NexusMods client to use for requests</param>
-		public CustomInquirer(NexusModsAPIClient client) : base(client) { }
+		public CustomInquirer(INexusModsClient client) : base(client) { }
 
 		/// <summary>
 		/// Sends Http requests and deserializes the response content to the specified .NET type
@@ -27,9 +27,9 @@ namespace NexusModsNET.Inquirers
 		/// <param name="cancellationToken">Enables cancellation of the Http request</param>
 		/// <param name="httpContent">The Http request message content (form, etc.)</param>
 		/// <returns>Returns the deserialized JSON response as the specified .NET type</returns>
-		public Task<T> SendAsync<T>(Uri uri, HttpMethod httpMethod, string acceptedMediaType = "application/json", CancellationToken cancellationToken = default, HttpContent httpContent = null)
+		public Task<T> ProcessRequestAsync<T>(Uri uri, HttpMethod httpMethod, string acceptedMediaType = "application/json", CancellationToken cancellationToken = default, HttpContent httpContent = null)
 		{
-			var httpRequestMessage = _client.ConstructHttpRequestMessage(httpMethod, uri, httpContent, acceptedMediaType);
+			var httpRequestMessage = _client.ConstructHttpRequestMessage(uri, httpMethod, httpContent, acceptedMediaType);
 			return _client.ProcessRequestAsync<T>(httpRequestMessage, cancellationToken);
 		}
 	}

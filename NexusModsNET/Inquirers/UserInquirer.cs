@@ -16,14 +16,14 @@ namespace NexusModsNET.Inquirers
 		/// Routes specific to the current user assigned to this API Key
 		/// </summary>
 		/// <param name="client">The NexusMods client to use for this endpoint</param>
-		public UserInquirer(NexusModsAPIClient client) : base(client) { }
+		public UserInquirer(INexusModsClient client) : base(client) { }
 
 		/// <summary>
 		/// Checks an API key is valid and returns the user's details
 		/// </summary>
 		/// <param name="cancellationToken">Enables cancellation of the Http request</param>
 		/// <returns></returns>
-		public Task<NexusUser> GetAsync(CancellationToken cancellationToken = default)
+		public Task<NexusUser> GetUserAsync(CancellationToken cancellationToken = default)
 		{
 			var requestUri = ConstructRequestURI(Routes.User.Validate);
 			return _client.ProcessRequestAsync<NexusUser>(requestUri, HttpMethod.Get, cancellationToken);

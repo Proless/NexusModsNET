@@ -2,17 +2,17 @@
 
 namespace NexusModsNET.Internals
 {
+	/// <summary>
+	/// A base class for all Inquirer, which is used internally
+	/// </summary>
 	public class InquirerBase
 	{
 		#region Fields
-		internal NexusModsAPIClient _client;
-		#endregion
-
-		#region Properties
+		internal INexusModsClient _client;
 		#endregion
 
 		#region Constructors
-		internal InquirerBase(NexusModsAPIClient client)
+		internal InquirerBase(INexusModsClient client)
 		{
 			_client = client;
 		}

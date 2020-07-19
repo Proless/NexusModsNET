@@ -10,14 +10,7 @@ namespace NexusModsNET
 {
 	internal static class Extensions
 	{
-		/// <summary>
-		/// Adds the specified parameter to the Query String.
-		/// </summary>
-		/// <param name="url"></param>
-		/// <param name="paramName">Name of the parameter to add.</param>
-		/// <param name="paramValue">Value for the parameter to add.</param>
-		/// <returns>Uri with added parameter.</returns>
-		public static Uri AddQuery(this Uri url, string paramName, string paramValue)
+		internal static Uri AddQuery(this Uri url, string paramName, string paramValue)
 		{
 			var uriBuilder = new UriBuilder(url);
 			var query = HttpUtility.ParseQueryString(uriBuilder.Query);
@@ -27,12 +20,6 @@ namespace NexusModsNET
 			return uriBuilder.Uri;
 		}
 
-		/// <summary>
-		/// Deserializes the Content of a response message to the specified .NET type
-		/// </summary>
-		/// <typeparam name="T">The .NET type</typeparam>
-		/// <param name="httpContent">The HttpContent to deserialize</param>
-		/// <returns>The deserialized JSON as the specified .NET type</returns>
 		internal static async Task<T> DeserializeContent<T>(this HttpContent httpContent)
 		{
 			using (var content = await httpContent.ReadAsStreamAsync())
@@ -43,6 +30,7 @@ namespace NexusModsNET
 				return jsonSerializer.Deserialize<T>(jsonReader);
 			}
 		}
+
 		internal static string GetCategoryName(this NexusModFileCategory category)
 		{
 			switch (category)

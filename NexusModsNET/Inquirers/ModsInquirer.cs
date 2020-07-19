@@ -16,7 +16,7 @@ namespace NexusModsNET.Inquirers
 		/// Mod specific routes (E.g. retrieving latest mods, endorsing a mod)
 		/// </summary>
 		/// <param name="client">The NexusMods client to use for this endpoint</param>
-		public ModsInquirer(NexusModsAPIClient client) : base(client) { }
+		public ModsInquirer(INexusModsClient client) : base(client) { }
 
 		/// <summary>
 		/// Returns an <see cref="IEnumerable{T}"/> of mods that have been updated in a given period, with timestamps of their last update.

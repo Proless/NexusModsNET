@@ -16,7 +16,7 @@ namespace NexusModsNET.Inquirers
 		/// Routes specific to retrieve information regarding supported games
 		/// </summary>
 		/// <param name="client">The NexusMods client to use for this endpoint</param>
-		public GamesInquirer(NexusModsAPIClient client) : base(client) { }
+		public GamesInquirer(INexusModsClient client) : base(client) { }
 
 		/// <summary>
 		/// Returns an <see cref="IEnumerable{T}"/> of all games, optionally can also return unapproved games
@@ -24,7 +24,7 @@ namespace NexusModsNET.Inquirers
 		/// <param name="include_unapproved">Determines whether to include unapproved games or not</param>
 		/// <param name="cancellationToken">Enables cancellation of the Http request</param>
 		/// <returns></returns>
-		public Task<IEnumerable<NexusGame>> GetAsync(bool include_unapproved = false, CancellationToken cancellationToken = default)
+		public Task<IEnumerable<NexusGame>> GetGamesAsync(bool include_unapproved = false, CancellationToken cancellationToken = default)
 		{
 			var requestUri = ConstructRequestURI(Routes.Games.Games_GETAll).AddQuery("include_unapproved", include_unapproved.ToString().ToLower());
 			return _client.ProcessRequestAsync<IEnumerable<NexusGame>>(requestUri, HttpMethod.Get, cancellationToken);
@@ -36,7 +36,7 @@ namespace NexusModsNET.Inquirers
 		/// <param name="game_domain">The game domain name</param>
 		/// <param name="cancellationToken">Enables cancellation of the Http request</param>
 		/// <returns></returns>
-		public Task<NexusGame> GetAsync(string game_domain, CancellationToken cancellationToken = default)
+		public Task<NexusGame> GetGameAsync(string game_domain, CancellationToken cancellationToken = default)
 		{
 			var requestUri = ConstructRequestURI(Routes.Games.Games_GETOne, game_domain);
 			return _client.ProcessRequestAsync<NexusGame>(requestUri, HttpMethod.Get, cancellationToken);
