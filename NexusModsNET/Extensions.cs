@@ -31,27 +31,6 @@ namespace NexusModsNET
 			}
 		}
 
-		internal static string GetCategoryName(this NexusModFileCategory category)
-		{
-			switch (category)
-			{
-				case NexusModFileCategory.Main:
-					return "main";
-				case NexusModFileCategory.Update:
-					return "update";
-				case NexusModFileCategory.Optional:
-					return "optional";
-				case NexusModFileCategory.Old:
-					return "old_version";
-				case NexusModFileCategory.Miscellaneous:
-					return "miscellaneous";
-				case NexusModFileCategory.Deleted:
-				case NexusModFileCategory.None:
-				default:
-					return "";
-			}
-		}
-
 		internal static string GetTimePeriod(this NexusTimePeriod timePeriod)
 		{
 			switch (timePeriod)
