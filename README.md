@@ -48,9 +48,9 @@ var userInquirer = infosInquirerFactory.CreateUserInquirer();
 ## Exceptions
 
 - `NexusAPIException` --> The base exception for all errors.
-- `ForbiddenException` -->
-- `QuotaLimitsExceededException` -->
-- `UnauthorizedException` -->
+- `ForbiddenException`
+- `QuotaLimitsExceededException`
+- `UnauthorizedException`
 
 Any responses form the API with a status code that is not in the range 200 - 299 are treated as errors and an exception will be thrown based on the status code.
 All exceptions derive from the base exception class **`NexusAPIException`**
