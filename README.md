@@ -1,5 +1,7 @@
 # NexusModsNET
 
+[![NuGet](https://img.shields.io/nuget/v/NexusModsNET?label=NuGet&style=flat-square)](https://www.nuget.org/packages/NexusModsNET/)
+
 A client for the [NexusMods](https://www.nexusmods.com/) API to proccess requests and resposes as described in the API [documentaion](https://app.swaggerhub.com/apis-docs/NexusMods/nexus-mods_public_api_params_in_form_data/1.0#/), it handles the server responses and deseriliazes the content to .NET objects
 
 This is a **.NET Standard 2.0** class library, it is compataible with every .NET Standard 2.0 supported platform as described [here](https://docs.microsoft.com/en-us/dotnet/standard/net-standard) 
