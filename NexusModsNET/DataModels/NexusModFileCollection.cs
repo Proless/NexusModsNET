@@ -2,7 +2,7 @@
 
 namespace NexusModsNET.DataModels
 {
-	public class NexusModFiles
+	public class NexusModFileCollection
 	{
 		[JsonProperty("files")]
 		public NexusModFile[] ModFiles { get; set; }

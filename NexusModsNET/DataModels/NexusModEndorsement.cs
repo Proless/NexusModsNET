@@ -11,7 +11,7 @@ namespace NexusModsNET.DataModels
 
 		[JsonProperty("timestamp")]
 		[JsonConverter(typeof(UnixDateTimeConverter))]
-		public DateTimeOffset? Timestamp { get; set; }
+		public DateTimeOffset? DateTime { get; set; }
 
 		[JsonProperty("version")]
 		public string Version { get; set; }

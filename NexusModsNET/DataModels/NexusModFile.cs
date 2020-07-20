@@ -1,6 +1,5 @@
 ﻿using System;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
 
 namespace NexusModsNET.DataModels
 {
@@ -15,14 +14,11 @@ namespace NexusModsNET.DataModels
 		[JsonProperty("version")]
 		public string Version { get; set; }
 
-		[JsonProperty("category_id")]
-		public int CategoryId { get; set; }
-
 		[JsonProperty("category_name")]
 		public string CategoryName { get; set; }
 
-		[JsonIgnore]
-		public NexusModFileCategory Category { get => (NexusModFileCategory)CategoryId; }
+		[JsonProperty("category_id")]
+		public NexusModFileCategory Category { get; set; }
 
 		[JsonProperty("is_primary")]
 		public bool IsPrimary { get; set; }
