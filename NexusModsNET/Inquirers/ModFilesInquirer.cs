@@ -27,18 +27,16 @@ namespace NexusModsNET.Inquirers
 		/// <param name="categories">Determines which file should be retrieved by their category</param>
 		/// <param name="cancellationToken">Enables cancellation of the Http request</param>
 		/// <returns></returns>
-		public Task<NexusModFiles> GetModFilesAsync(string game_domain, long modId, NexusModFileCategory[] categories, CancellationToken cancellationToken = default)
+		public Task<NexusModFileCollection> GetModFilesAsync(string game_domain, long modId, NexusModFileCategory[] categories, CancellationToken cancellationToken = default)
 		{
 
-			var categoriesList = categories
-								.Select(c => c.GetCategoryName())
-								.Where(c => !string.IsNullOrWhiteSpace(c));
+			var categoriesList = categories.Where(c => c != NexusModFileCategory.Deleted).Distinct();
 
 			var commaSeperatedCategoryList = string.Join(",", categoriesList);
 
 			var requestUri = ConstructRequestURI(Routes.ModFiles.Files, game_domain, modId.ToString()).AddQuery("category", commaSeperatedCategoryList);
 
-			return _client.ProcessRequestAsync<NexusModFiles>(requestUri, HttpMethod.Get, cancellationToken);
+			return _client.ProcessRequestAsync<NexusModFileCollection>(requestUri, HttpMethod.Get, cancellationToken);
 		}
 
 		/// <summary>
@@ -48,12 +46,12 @@ namespace NexusModsNET.Inquirers
 		/// <param name="modId">The mod Id</param>
 		/// <param name="cancellationToken">Enables cancellation of the Http request</param>
 		/// <returns></returns>
-		public Task<NexusModFiles> GetModFilesAsync(string game_domain, long modId, CancellationToken cancellationToken = default)
+		public Task<NexusModFileCollection> GetModFilesAsync(string game_domain, long modId, CancellationToken cancellationToken = default)
 		{
 
 			var requestUri = ConstructRequestURI(Routes.ModFiles.Files, game_domain, modId.ToString());
 
-			return _client.ProcessRequestAsync<NexusModFiles>(requestUri, HttpMethod.Get, cancellationToken);
+			return _client.ProcessRequestAsync<NexusModFileCollection>(requestUri, HttpMethod.Get, cancellationToken);
 		}
 
 		/// <summary>
