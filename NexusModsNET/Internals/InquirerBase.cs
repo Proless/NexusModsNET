@@ -21,6 +21,10 @@ namespace NexusModsNET.Internals
 		#region Constructors
 		internal InquirerBase(INexusModsClient client)
 		{
+			if (client == null)
+			{
+				throw new ArgumentNullException(nameof(client));
+			}
 			_client = client;
 		}
 		#endregion
