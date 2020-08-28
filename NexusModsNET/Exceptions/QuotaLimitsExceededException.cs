@@ -10,16 +10,22 @@ namespace NexusModsNET.Exceptions
 	public class QuotaLimitsExceededException : NexusAPIException
 	{
 		/// <summary>
-		/// This Exception is thrown whenever a Limit has been exceeded
+		/// The type of the limits that were exceeded.
 		/// </summary>
-		public QuotaLimitsExceededException(HttpStatusCode statusCode) : base(statusCode) { }
+		public LimitType LimitType { get; }
 		/// <summary>
 		/// This Exception is thrown whenever a Limit has been exceeded
 		/// </summary>
-		public QuotaLimitsExceededException(string message, HttpStatusCode statusCode) : base(message, statusCode) { }
+		public QuotaLimitsExceededException(HttpStatusCode statusCode, LimitType limitType) : base(statusCode)
+		{
+			LimitType = limitType;
+		}
 		/// <summary>
 		/// This Exception is thrown whenever a Limit has been exceeded
 		/// </summary>
-		public QuotaLimitsExceededException(string message, HttpStatusCode statusCode, Exception inner) : base(message, statusCode, inner) { }
+		public QuotaLimitsExceededException(string message, HttpStatusCode statusCode, LimitType limitType) : base(message, statusCode)
+		{
+			LimitType = limitType;
+		}
 	}
 }

@@ -21,7 +21,7 @@ namespace NexusModsNET.Internals.Handlers
 		/// <param name="quotaManagement">A class where a custom defined limits will be checked before each call request is sent</param>
 		internal QuotaLimitsHandler(Action<HttpResponseMessage> responseCallback, QuotaManagement quotaManagement) : base()
 		{
-			_responseCallback = responseCallback ?? throw new ArgumentNullException(nameof(responseCallback), "The response callback delegate can't be null !");
+			_responseCallback = responseCallback;
 			_quotaManagement = quotaManagement;
 		}
 		/// <summary>
@@ -32,7 +32,7 @@ namespace NexusModsNET.Internals.Handlers
 		/// <param name="quotaManagement">A class where a custom defined limits will be checked before each call request is sent</param>
 		internal QuotaLimitsHandler(HttpMessageHandler handler, Action<HttpResponseMessage> responseCallback, QuotaManagement quotaManagement) : base(handler)
 		{
-			_responseCallback = responseCallback ?? throw new ArgumentNullException(nameof(responseCallback), "The response callback delegate can't be null !");
+			_responseCallback = responseCallback;
 			_quotaManagement = quotaManagement;
 		}
 
@@ -43,7 +43,7 @@ namespace NexusModsNET.Internals.Handlers
 		{
 			if (_quotaManagement.LimitsExceeded())
 			{
-				throw new UserLimitsExceededException($"The Max-Limits of {_quotaManagement.MaxHourlyLimit} hourly and/or the {_quotaManagement.MaxDailyLimit} daily have been reached !", (HttpStatusCode)429);
+				throw new QuotaLimitsExceededException((HttpStatusCode)429, LimitType.Custom);
 			}
 			else
 			{

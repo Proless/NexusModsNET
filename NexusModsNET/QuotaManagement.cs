@@ -1,40 +1,39 @@
 ﻿using NexusModsNET.DataModels;
 using NexusModsNET.Exceptions;
 
-namespace NexusModsNET.Internals
+namespace NexusModsNET
 {
 	/// <summary>
 	/// Manges the API Limits
 	/// </summary>
 	public class QuotaManagement
 	{
-		private int _maxDailyLimit;
-		private int _maxHourlyLimit;
 		#region Fields
-
+		private int _customDailyLimit;
+		private int _customHourlyLimit;
 		#endregion
 
 		#region Properties
 		/// <summary>
-		/// The limits defined by the NexusMods API.
+		/// The current reached limits of the API.
 		/// </summary>
 		public NexusQuotaLimits APILimits { get; internal set; }
 		/// <summary>
 		/// Gets or sets the max possible daily requests before throwing a <see cref="QuotaLimitsExceededException"/>
 		/// <br/> The Limit defined by the API is 2500 Daily.
 		/// </summary>
-		public int MaxDailyLimit
+		public int CustomDailyLimit
 		{
-			get => _maxDailyLimit;
+			get => _customDailyLimit;
 			set
 			{
 				if (value > 2500 || value < 0)
 				{
-					_maxDailyLimit = 2500;
+					_customDailyLimit = 2500;
 				}
 				else
 				{
-					_maxDailyLimit = value;
+					_customDailyLimit = value;
 				}
 
 			}
@@ -43,18 +42,18 @@ namespace NexusModsNET.Internals
 		/// Gets or sets the max possible hourly requests before throwing a <see cref="QuotaLimitsExceededException"/>
 		/// <br/> The Limit defined by the API is 100 Hourly.
 		/// </summary>
-		public int MaxHourlyLimit
+		public int CustomHourlyLimit
 		{
-			get => _maxHourlyLimit;
+			get => _customHourlyLimit;
 			set
 			{
 				if (value > 100 || value < 0)
 				{
-					_maxHourlyLimit = 100;
+					_customHourlyLimit = 100;
 				}
 				else
 				{
-					_maxHourlyLimit = value;
+					_customHourlyLimit = value;
 				}
 			}
 		}
@@ -66,8 +65,8 @@ namespace NexusModsNET.Internals
 		/// </summary>
 		public QuotaManagement()
 		{
-			MaxDailyLimit = 100;
-			MaxHourlyLimit = 2500;
+			CustomDailyLimit = 100;
+			CustomHourlyLimit = 2500;
 		}
 		#endregion
 
@@ -82,13 +81,13 @@ namespace NexusModsNET.Internals
 		}
 		private bool DailyLimitsExceeded()
 		{
-			var customLimit = APILimits?.DailyLimit - APILimits?.DailyRemaining >= MaxDailyLimit;
+			var customLimit = APILimits?.DailyLimit - APILimits?.DailyRemaining >= CustomDailyLimit;
 			var apiLimit = APILimits?.DailyRemaining <= 0;
 			return customLimit || apiLimit;
 		}
 		private bool HourlyLimitsExceeded()
 		{
-			var customLimit = APILimits?.HourlyLimit - APILimits?.HourlyRemaining >= MaxHourlyLimit;
+			var customLimit = APILimits?.HourlyLimit - APILimits?.HourlyRemaining >= CustomHourlyLimit;
 			var apiLimit = APILimits?.HourlyRemaining <= 0;
 			return customLimit || apiLimit;
 		}

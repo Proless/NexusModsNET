@@ -49,7 +49,6 @@ namespace NexusModsNET
 		#endregion
 
 		#region Constructors
-
 		private NexusModsClient(string apiKey, string productName, string productVersion)
 		{
 			// Initialize properties
@@ -60,7 +59,6 @@ namespace NexusModsNET
 			UserAgent = ConstructUserAgent(ProductName, ProductVersion).ToString();
 			InitializeHttpClient();
 		}
-
 		private NexusModsClient(string apiKey)
 		{
 			// Initialize properties
@@ -71,7 +69,6 @@ namespace NexusModsNET
 			UserAgent = ConstructUserAgent(ProductName, ProductVersion);
 			InitializeHttpClient();
 		}
-
 		#endregion
 
 		#region Factory Methods
@@ -82,7 +79,7 @@ namespace NexusModsNET
 		/// <returns></returns>
 		public static INexusModsClient Create(string apiKey)
 		{
-			if (string.IsNullOrWhiteSpace(apiKey)) { throw new ArgumentNullException($"Parameter {nameof(apiKey)} can't be null or empty !"); }
+			ThrowIfNull(apiKey, nameof(apiKey));
 			return new NexusModsClient(apiKey);
 		}
 
@@ -95,9 +92,9 @@ namespace NexusModsNET
 		/// <returns></returns>
 		public static INexusModsClient Create(string apiKey, string productName, string productVersion)
 		{
-			if (string.IsNullOrWhiteSpace(apiKey)) { throw new ArgumentNullException($"Parameter {nameof(apiKey)} can't be null or empty !"); }
-			if (string.IsNullOrWhiteSpace(productName)) { throw new ArgumentNullException($"Parameter {nameof(productName)} can't be null or empty !"); }
-			if (string.IsNullOrWhiteSpace(productVersion)) { throw new ArgumentNullException($"Parameter {nameof(productVersion)} can't be null or empty !"); }
+			ThrowIfNull(apiKey, nameof(apiKey));
+			ThrowIfNull(productName, nameof(productName));
+			ThrowIfNull(productVersion, nameof(productVersion));
 			return new NexusModsClient(apiKey, productName, productVersion);
 		}
 		#endregion
@@ -179,7 +176,6 @@ namespace NexusModsNET
 			return httpRequestMessage;
 		}
 
-
 		/// <summary>
 		/// <inheritdoc/>
 		/// </summary>
@@ -254,6 +250,10 @@ namespace NexusModsNET
 			{
 				QuotaManagement.APILimits = limits;
 			}
+		}
+		private static void ThrowIfNull(string value, string propertyName)
+		{
+			if (string.IsNullOrWhiteSpace(value)) { throw new ArgumentNullException($"Parameter {propertyName} can't be null or empty !"); }
 		}
 		#endregion
 	}
