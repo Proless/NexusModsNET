@@ -24,7 +24,6 @@ An **Inquirer** is the actuall endpoint of the API, where you can call methods t
 - ModFilesInquirer
 - ModsInquirer
 - UserInquirer
-- CustomInquirer
 
 Mainly you want to use the `InfosInquirer`, which combines all available endpoints of the API.
 
