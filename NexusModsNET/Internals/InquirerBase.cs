@@ -15,7 +15,7 @@ namespace NexusModsNET.Internals
 		/// <summary>
 		/// A manger to get or manage the limits of the API.
 		/// </summary>
-		public QuotaManagement QuotaManagement { get { return _client.QuotaManagement; } }
+		public IRateLimitsManagement RateLimitsManagement { get { return _client.RateLimitsManagement; } }
 		#endregion
 
 		#region Constructors

@@ -33,7 +33,7 @@ namespace NexusModsNET.Internals.Handlers
 					case HttpStatusCode.Unauthorized:
 						throw new UnauthorizedException(responseMessage.Message, response.StatusCode);
 					case (HttpStatusCode)429:
-						throw new QuotaLimitsExceededException(responseMessage.Message, response.StatusCode, LimitType.API);
+						throw new LimitsExceededException(responseMessage.Message, response.StatusCode, LimitType.API);
 					default:
 						throw new NexusAPIException(responseMessage.Message, response.StatusCode);
 				}

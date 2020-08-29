@@ -2,7 +2,6 @@
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
-using NexusModsNET.Internals;
 
 namespace NexusModsNET
 {
@@ -26,7 +25,7 @@ namespace NexusModsNET
 		/// <summary>
 		/// A manger to get or manage the limits of the API.
 		/// </summary>
-		QuotaManagement QuotaManagement { get; }
+		IRateLimitsManagement RateLimitsManagement { get; }
 		/// <summary>
 		/// The client User agent string sent with each Http request.
 		/// </summary>

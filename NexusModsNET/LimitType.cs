@@ -3,7 +3,7 @@
 namespace NexusModsNET
 {
 	/// <summary>
-	/// Represents the type of the limit that caused the <see cref="QuotaLimitsExceededException"/>
+	/// Represents the type of the limit that caused the <see cref="LimitsExceededException"/>
 	/// </summary>
 	public enum LimitType
 	{
@@ -12,7 +12,7 @@ namespace NexusModsNET
 		/// </summary>
 		API,
 		/// <summary>
-		/// The custom Limits set by the user
+		/// The custom Limits set using the <see cref="RateLimitsManagement"/>
 		/// </summary>
 		Custom
 	}
