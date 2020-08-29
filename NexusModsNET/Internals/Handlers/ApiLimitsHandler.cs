@@ -6,11 +6,11 @@ using NexusModsNET.Exceptions;
 
 namespace NexusModsNET.Internals.Handlers
 {
-	internal class QuotaLimitsHandler : MessageProcessingHandler
+	internal class ApiLimitsHandler : MessageProcessingHandler
 	{
 		#region Fields
 		private readonly Action<HttpResponseMessage> _responseCallback;
-		private readonly QuotaManagement _quotaManagement;
+		private readonly IRateLimitsManagement _apiLimitsManagement;
 		#endregion
 
 		#region Constructors
@@ -18,32 +18,38 @@ namespace NexusModsNET.Internals.Handlers
 		/// A <see cref="MessageProcessingHandler"/> to handle the get the API Limits from each response
 		/// </summary>
 		/// <param name="responseCallback">A <see cref="Action{T}"/> delegate to process a response message and get the API Limits from the Headers</param>
-		/// <param name="quotaManagement">A class where a custom defined limits will be checked before each call request is sent</param>
-		internal QuotaLimitsHandler(Action<HttpResponseMessage> responseCallback, QuotaManagement quotaManagement) : base()
+		/// <param name="rateLimitsManagement">A class where the custom defined limits will be read before each call request is sent</param>
+		internal ApiLimitsHandler(Action<HttpResponseMessage> responseCallback, IRateLimitsManagement rateLimitsManagement) : base()
 		{
-			_responseCallback = responseCallback ?? throw new ArgumentNullException(nameof(responseCallback), "The response callback delegate can't be null !");
-			_quotaManagement = quotaManagement;
+			_responseCallback = responseCallback;
+			_apiLimitsManagement = rateLimitsManagement;
 		}
 		/// <summary>
 		/// A <see cref="MessageProcessingHandler"/> to handle the get the API Limits from each response
 		/// </summary>
 		/// <param name="handler">The inner handler which is responsible for processing the HTTP response messages</param>
 		/// <param name="responseCallback">A <see cref="Action{T}"/> delegate to process a response message and get the API Limits from the Headers</param>
-		/// <param name="quotaManagement">A class where a custom defined limits will be checked before each call request is sent</param>
-		internal QuotaLimitsHandler(HttpMessageHandler handler, Action<HttpResponseMessage> responseCallback, QuotaManagement quotaManagement) : base(handler)
+		/// <param name="rateLimitsManagement">A class where the custom defined limits will be read before each call request is sent</param>
+		internal ApiLimitsHandler(HttpMessageHandler handler, Action<HttpResponseMessage> responseCallback, IRateLimitsManagement rateLimitsManagement) : base(handler)
 		{
-			_responseCallback = responseCallback ?? throw new ArgumentNullException(nameof(responseCallback), "The response callback delegate can't be null !");
-			_quotaManagement = quotaManagement;
+			_responseCallback = responseCallback;
+			_apiLimitsManagement = rateLimitsManagement;
 		}
-
 		#endregion
 
 		#region Methods
 		protected override HttpRequestMessage ProcessRequest(HttpRequestMessage request, CancellationToken cancellationToken)
 		{
-			if (_quotaManagement.LimitsExceeded())
+			if (_apiLimitsManagement.ThrowOnCustomLimitsExceeded)
 			{
-				throw new UserLimitsExceededException($"The Max-Limits of {_quotaManagement.MaxHourlyLimit} hourly and/or the {_quotaManagement.MaxDailyLimit} daily have been reached !", (HttpStatusCode)429);
+				if (_apiLimitsManagement.CustomDailyLimitExceeded() && _apiLimitsManagement.CustomHourlyLimitExceeded())
+				{
+					throw new LimitsExceededException((HttpStatusCode)429, LimitType.Custom);
+				}
+				else
+				{
+					return request;
+				}
 			}
 			else
 			{

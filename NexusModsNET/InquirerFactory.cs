@@ -1,5 +1,4 @@
-﻿using System;
-using NexusModsNET.Inquirers;
+﻿using NexusModsNET.Inquirers;
 
 namespace NexusModsNET
 {
@@ -41,19 +40,6 @@ namespace NexusModsNET
 				return new ColourSchemesInquirer(CreateNewClient());
 			}
 			return new ColourSchemesInquirer(_client);
-		}
-		/// <summary>
-		/// <inheritdoc/>
-		/// </summary>
-		/// <param name="withNewClient"><inheritdoc/></param>
-		/// <returns><inheritdoc/></returns>
-		public CustomInquirer CreateCustomInquirer(bool withNewClient = false)
-		{
-			if (withNewClient)
-			{
-				return new CustomInquirer(CreateNewClient());
-			}
-			return new CustomInquirer(_client);
 		}
 		/// <summary>
 		/// <inheritdoc/>

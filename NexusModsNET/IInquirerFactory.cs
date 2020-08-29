@@ -49,12 +49,5 @@ namespace NexusModsNET
 		/// <br/> or reuse the same client instance created while Initializing this factory</param>
 		/// <returns>A new <see cref="ColourSchemesInquirer"/> instance</returns>
 		ColourSchemesInquirer CreateColourSchemesInquirer(bool withNewClient = false);
-		/// <summary>
-		/// <inheritdoc/>
-		/// </summary>
-		/// <param name="withNewClient">Determines whether to create a new NexusMods client for the new created instance of the Inquirer
-		/// <br/> or reuse the same client instance created while Initializing this factory</param>
-		/// <returns>A new <see cref="CustomInquirer"/> instance</returns>
-		CustomInquirer CreateCustomInquirer(bool withNewClient = false);
 	}
 }

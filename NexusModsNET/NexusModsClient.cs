@@ -23,6 +23,7 @@ namespace NexusModsNET
 		/// The underlying HttpClient
 		/// </summary>
 		private HttpClient _httpClient;
+		private RateLimitsManagement _rateLimitsManagement;
 		#endregion
 
 		#region Properties
@@ -45,33 +46,21 @@ namespace NexusModsNET
 		/// <summary>
 		/// <inheritdoc/>
 		/// </summary>
-		public QuotaManagement QuotaManagement { get; }
+		public IRateLimitsManagement RateLimitsManagement { get => _rateLimitsManagement; }
 		#endregion
 
 		#region Constructors
-
 		private NexusModsClient(string apiKey, string productName, string productVersion)
 		{
 			// Initialize properties
 			APIKey = apiKey;
 			ProductName = productName;
 			ProductVersion = productVersion;
-			QuotaManagement = new QuotaManagement();
-			UserAgent = ConstructUserAgent(ProductName, ProductVersion).ToString();
-			InitializeHttpClient();
-		}
-
-		private NexusModsClient(string apiKey)
-		{
-			// Initialize properties
-			APIKey = apiKey;
-			ProductName = Assembly.GetExecutingAssembly().GetName().Name;
-			ProductVersion = Assembly.GetExecutingAssembly().GetName().Version.ToString(3);
-			QuotaManagement = new QuotaManagement();
+			_rateLimitsManagement = new RateLimitsManagement();
 			UserAgent = ConstructUserAgent(ProductName, ProductVersion);
 			InitializeHttpClient();
 		}
-
+		private NexusModsClient(string apiKey) : this(apiKey, Assembly.GetExecutingAssembly().GetName().Name, Assembly.GetExecutingAssembly().GetName().Version.ToString(3)) { }
 		#endregion
 
 		#region Factory Methods
@@ -82,7 +71,7 @@ namespace NexusModsNET
 		/// <returns></returns>
 		public static INexusModsClient Create(string apiKey)
 		{
-			if (string.IsNullOrWhiteSpace(apiKey)) { throw new ArgumentNullException($"Parameter {nameof(apiKey)} can't be null or empty !"); }
+			ThrowIfNull(apiKey, nameof(apiKey));
 			return new NexusModsClient(apiKey);
 		}
 
@@ -95,9 +84,9 @@ namespace NexusModsNET
 		/// <returns></returns>
 		public static INexusModsClient Create(string apiKey, string productName, string productVersion)
 		{
-			if (string.IsNullOrWhiteSpace(apiKey)) { throw new ArgumentNullException($"Parameter {nameof(apiKey)} can't be null or empty !"); }
-			if (string.IsNullOrWhiteSpace(productName)) { throw new ArgumentNullException($"Parameter {nameof(productName)} can't be null or empty !"); }
-			if (string.IsNullOrWhiteSpace(productVersion)) { throw new ArgumentNullException($"Parameter {nameof(productVersion)} can't be null or empty !"); }
+			ThrowIfNull(apiKey, nameof(apiKey));
+			ThrowIfNull(productName, nameof(productName));
+			ThrowIfNull(productVersion, nameof(productVersion));
 			return new NexusModsClient(apiKey, productName, productVersion);
 		}
 		#endregion
@@ -179,7 +168,6 @@ namespace NexusModsNET
 			return httpRequestMessage;
 		}
 
-
 		/// <summary>
 		/// <inheritdoc/>
 		/// </summary>
@@ -194,7 +182,7 @@ namespace NexusModsNET
 		{
 			// Initialize the HttpClient handlers
 			var httpClientHandler = new HttpClientHandler() { AllowAutoRedirect = true };
-			var quotaLimitsProcessor = new QuotaLimitsHandler(httpClientHandler, UpdateLimits, QuotaManagement);
+			var quotaLimitsProcessor = new ApiLimitsHandler(httpClientHandler, UpdateLimits, RateLimitsManagement);
 			var nexusErrorsHandler = new NexusErrorsHandler(quotaLimitsProcessor);
 
 			// Initialize the HttpClient
@@ -218,7 +206,7 @@ namespace NexusModsNET
 			}
 			return value;
 		}
-		private bool TryGetLimits(HttpResponseMessage httpResponse, out NexusQuotaLimits limits)
+		private bool TryGetLimits(HttpResponseMessage httpResponse, out NexusApiLimits limits)
 		{
 			try
 			{
@@ -228,7 +216,7 @@ namespace NexusModsNET
 				int dRemaining = int.Parse(GetHeaderValue(httpResponse, "X-RL-Daily-Remaining"));
 				DateTime hReset = DateTime.Parse(GetHeaderValue(httpResponse, "X-RL-Hourly-Reset"));
 				DateTime dReset = DateTime.Parse(GetHeaderValue(httpResponse, "X-RL-Daily-Reset"));
-				limits = new NexusQuotaLimits
+				limits = new NexusApiLimits
 				{
 					DailyLimit = dLimit,
 					DailyRemaining = dRemaining,
@@ -248,12 +236,16 @@ namespace NexusModsNET
 		}
 		private void UpdateLimits(HttpResponseMessage httpResponse)
 		{
-			var updatingSuccessful = TryGetLimits(httpResponse, out NexusQuotaLimits limits);
+			var updatingSuccessful = TryGetLimits(httpResponse, out NexusApiLimits limits);
 
 			if (updatingSuccessful)
 			{
-				QuotaManagement.APILimits = limits;
+				_rateLimitsManagement.APILimits = limits;
 			}
+		}
+		private static void ThrowIfNull(string value, string propertyName)
+		{
+			if (string.IsNullOrWhiteSpace(value)) { throw new ArgumentNullException($"Parameter {propertyName} can't be null or empty !"); }
 		}
 		#endregion
 	}

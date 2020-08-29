@@ -6,9 +6,9 @@ using System.Web;
 using Newtonsoft.Json;
 using NexusModsNET.DataModels;
 
-namespace NexusModsNET
+namespace NexusModsNET.Internals
 {
-	internal static class Extensions
+	internal static class InternalExtensions
 	{
 		internal static Uri AddQuery(this Uri url, string paramName, string paramValue)
 		{

@@ -5,18 +5,19 @@
 		<GenerateDocumentationFile>true</GenerateDocumentationFile>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<Authors>Hasan Darwish</Authors>
-		<Company />
-		<Description>A client for the NexusMods API to proccess requests and resposes as described in the API documentaion, it handles the server responses and deseriliazes the content to .NET objects</Description>
+		<Description>A client for the NexusMods API to process requests and responses as described in the API documentation, it handles the server responses and deserializes the content to .NET objects</Description>
 		<Copyright>Copyright (c) 2020 Hasan Darwish</Copyright>
 		<RepositoryUrl>https://github.com/Proless/NexusModsNET</RepositoryUrl>
 		<PackageProjectUrl>https://github.com/Proless/NexusModsNET</PackageProjectUrl>
 		<PackageTags>nexusmods, api, mods</PackageTags>
-		<PackageReleaseNotes>- fixed some issues when deserializing the Json response</PackageReleaseNotes>
+		<PackageReleaseNotes>- Added custom rate limits managment
+- removed the CustomInquirer
+- code cleanup and refactoring</PackageReleaseNotes>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
-		<AssemblyVersion>1.0.2.0</AssemblyVersion>
-		<FileVersion>1.0.2.0</FileVersion>
-		<Version>1.0.2</Version>
+		<AssemblyVersion>1.0.3.0</AssemblyVersion>
+		<FileVersion>1.0.3.0</FileVersion>
+		<Version>1.0.3</Version>
 		<Title>NexusModsNET</Title>
 	</PropertyGroup>
 

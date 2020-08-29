@@ -15,17 +15,13 @@ namespace NexusModsNET.Internals
 		/// <summary>
 		/// A manger to get or manage the limits of the API.
 		/// </summary>
-		public QuotaManagement QuotaManagement { get { return _client.QuotaManagement; } }
+		public IRateLimitsManagement RateLimitsManagement { get { return _client.RateLimitsManagement; } }
 		#endregion
 
 		#region Constructors
 		internal InquirerBase(INexusModsClient client)
 		{
-			if (client == null)
-			{
-				throw new ArgumentNullException(nameof(client));
-			}
-			_client = client;
+			_client = client ?? throw new ArgumentNullException(nameof(client));
 		}
 		#endregion
 
