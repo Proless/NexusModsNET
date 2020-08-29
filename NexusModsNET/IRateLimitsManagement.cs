@@ -28,11 +28,11 @@ namespace NexusModsNET
 		/// </summary>
 		bool ThrowOnCustomLimitsExceeded { get; set; }
 		/// <summary>
-		/// Indicates the Daily limits has been exceeded.
+		/// Indicates that a Daily limit has been exceeded.
 		/// </summary>
 		event EventHandler<LimitType> DailyLimitsExceeded;
 		/// <summary>
-		/// Indicates the Hourly limits has been exceeded.
+		/// Indicates that a Hourly limit has been exceeded.
 		/// </summary>
 		event EventHandler<LimitType> HourlyLimitsExceeded;
 	}
