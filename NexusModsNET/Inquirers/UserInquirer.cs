@@ -10,7 +10,7 @@ namespace NexusModsNET.Inquirers
 	/// <summary>
 	/// Routes specific to the current user assigned to this API Key
 	/// </summary>
-	public class UserInquirer : InquirerBase
+	public class UserInquirer : InquirerBase, IUserInquirer
 	{
 		/// <summary>
 		/// Routes specific to the current user assigned to this API Key

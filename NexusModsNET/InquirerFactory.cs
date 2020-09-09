@@ -19,7 +19,7 @@ namespace NexusModsNET
 		/// </summary>
 		/// <param name="withNewClient"><inheritdoc/></param>
 		/// <returns><inheritdoc/></returns>
-		public InfosInquirer CreateInfosInquirer(bool withNewClient = false)
+		public IInfosInquirer CreateInfosInquirer(bool withNewClient = false)
 		{
 			if (withNewClient)
 			{
@@ -33,7 +33,7 @@ namespace NexusModsNET
 		/// </summary>
 		/// <param name="withNewClient"><inheritdoc/></param>
 		/// <returns><inheritdoc/></returns>
-		public ColourSchemesInquirer CreateColourSchemesInquirer(bool withNewClient = false)
+		public IColourSchemesInquirer CreateColourSchemesInquirer(bool withNewClient = false)
 		{
 			if (withNewClient)
 			{
@@ -46,7 +46,7 @@ namespace NexusModsNET
 		/// </summary>
 		/// <param name="withNewClient"><inheritdoc/></param>
 		/// <returns><inheritdoc/></returns>
-		public GamesInquirer CreateGamesInquirer(bool withNewClient = false)
+		public IGamesInquirer CreateGamesInquirer(bool withNewClient = false)
 		{
 			if (withNewClient)
 			{
@@ -59,7 +59,7 @@ namespace NexusModsNET
 		/// </summary>
 		/// <param name="withNewClient"><inheritdoc/></param>
 		/// <returns><inheritdoc/></returns>
-		public ModFilesInquirer CreateModFilesInquirer(bool withNewClient = false)
+		public IModFilesInquirer CreateModFilesInquirer(bool withNewClient = false)
 		{
 			if (withNewClient)
 			{
@@ -72,7 +72,7 @@ namespace NexusModsNET
 		/// </summary>
 		/// <param name="withNewClient"><inheritdoc/></param>
 		/// <returns><inheritdoc/></returns>
-		public ModsInquirer CreateModsInquirer(bool withNewClient = false)
+		public IModsInquirer CreateModsInquirer(bool withNewClient = false)
 		{
 			if (withNewClient)
 			{
@@ -85,7 +85,7 @@ namespace NexusModsNET
 		/// </summary>
 		/// <param name="withNewClient"><inheritdoc/></param>
 		/// <returns><inheritdoc/></returns>
-		public UserInquirer CreateUserInquirer(bool withNewClient = false)
+		public IUserInquirer CreateUserInquirer(bool withNewClient = false)
 		{
 			if (withNewClient)
 			{

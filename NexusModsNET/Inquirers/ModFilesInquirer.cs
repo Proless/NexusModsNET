@@ -11,7 +11,7 @@ namespace NexusModsNET.Inquirers
 	/// <summary>
 	/// File specific routes (E.g. retrieving file information, retrieving download link)
 	/// </summary>
-	public class ModFilesInquirer : InquirerBase
+	public class ModFilesInquirer : InquirerBase, IModFilesInquirer
 	{
 		/// <summary>
 		/// File specific routes (E.g. retrieving file information, retrieving download link)

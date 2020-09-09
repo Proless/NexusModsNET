@@ -10,7 +10,7 @@ namespace NexusModsNET.Inquirers
 	/// <summary>
 	/// Routes specific to retrieve information regarding supported games
 	/// </summary>
-	public class GamesInquirer : InquirerBase
+	public class GamesInquirer : InquirerBase, IGamesInquirer
 	{
 		/// <summary>
 		/// Routes specific to retrieve information regarding supported games

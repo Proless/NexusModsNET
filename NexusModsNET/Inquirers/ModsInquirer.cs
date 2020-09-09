@@ -10,7 +10,7 @@ namespace NexusModsNET.Inquirers
 	/// <summary>
 	/// Mod specific routes (E.g. retrieving latest mods, endorsing a mod)
 	/// </summary>
-	public class ModsInquirer : InquirerBase
+	public class ModsInquirer : InquirerBase, IModsInquirer
 	{
 		/// <summary>
 		/// Mod specific routes (E.g. retrieving latest mods, endorsing a mod)

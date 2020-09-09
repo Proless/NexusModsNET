@@ -6,29 +6,29 @@ namespace NexusModsNET
 	/// <summary>
 	/// Combines all other Inquirers for all available endpoints
 	/// </summary>
-	public class InfosInquirer : InquirerBase
+	public class InfosInquirer : InquirerBase, IInfosInquirer
 	{
 		#region Properties
 		/// <summary>
 		/// Routes specific to the current user assigned to this API Key
 		/// </summary>
-		public UserInquirer User { get; }
+		public IUserInquirer User { get; }
 		/// <summary>
 		/// Routes specific to retrieve information regarding supported games
 		/// </summary>
-		public GamesInquirer Games { get; }
+		public IGamesInquirer Games { get; }
 		/// <summary>
 		/// Mod specific routes (E.g. retrieving latest mods, endorsing a mod)
 		/// </summary>
-		public ModsInquirer Mods { get; }
+		public IModsInquirer Mods { get; }
 		/// <summary>
 		/// File specific routes (E.g. retrieving file information, retrieving download link)
 		/// </summary>
-		public ModFilesInquirer ModFiles { get; }
+		public IModFilesInquirer ModFiles { get; }
 		/// <summary>
 		/// Routes specific to retrieve information regarding colour-specific themes for games
 		/// </summary>
-		public ColourSchemesInquirer ColourSchemes { get; }
+		public IColourSchemesInquirer ColourSchemes { get; }
 		#endregion
 
 		/// <summary>

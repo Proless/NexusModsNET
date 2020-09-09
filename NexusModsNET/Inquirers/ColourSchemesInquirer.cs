@@ -10,7 +10,7 @@ namespace NexusModsNET.Inquirers
 	/// <summary>
 	/// Routes specific to retrieve information regarding colour-specific themes for games
 	/// </summary>
-	public class ColourSchemesInquirer : InquirerBase
+	public class ColourSchemesInquirer : InquirerBase, IColourSchemesInquirer
 	{
 		/// <summary>
 		/// Routes specific to retrieve information regarding colour-specific themes for games
