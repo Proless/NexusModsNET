@@ -10,14 +10,12 @@
 		<RepositoryUrl>https://github.com/Proless/NexusModsNET</RepositoryUrl>
 		<PackageProjectUrl>https://github.com/Proless/NexusModsNET</PackageProjectUrl>
 		<PackageTags>nexusmods, api, mods</PackageTags>
-		<PackageReleaseNotes>- Added custom rate limits managment
-- removed the CustomInquirer
-- code cleanup and refactoring</PackageReleaseNotes>
+		<PackageReleaseNotes>- extracted interfaces for the Inquirer</PackageReleaseNotes>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
-		<AssemblyVersion>1.0.3.0</AssemblyVersion>
-		<FileVersion>1.0.3.0</FileVersion>
-		<Version>1.0.3</Version>
+		<AssemblyVersion>1.0.4.0</AssemblyVersion>
+		<FileVersion>1.0.4.0</FileVersion>
+		<Version>1.0.4</Version>
 		<Title>NexusModsNET</Title>
 	</PropertyGroup>
 
