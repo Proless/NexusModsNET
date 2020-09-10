@@ -6,7 +6,7 @@ namespace NexusModsNET
 	/// <summary>
 	/// Manges the API Limits
 	/// </summary>
-	public class RateLimitsManagement : IRateLimitsManagement
+	internal class RateLimitsManagement : IRateLimitsManagement
 	{
 		#region Fields
 		private int _customDailyLimit;
