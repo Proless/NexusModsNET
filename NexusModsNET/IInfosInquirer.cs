@@ -1,11 +1,12 @@
-﻿using NexusModsNET.Inquirers;
+﻿using System;
+using NexusModsNET.Inquirers;
 
 namespace NexusModsNET
 {
 	/// <summary>
 	/// Combines all other Inquirers for all available endpoints
 	/// </summary>
-	public interface IInfosInquirer
+	public interface IInfosInquirer : IDisposable
 	{
 		/// <summary>
 		/// A manger to read or manage the limits of the API.
