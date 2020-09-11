@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using NexusModsNET.DataModels;
@@ -8,7 +9,7 @@ namespace NexusModsNET.Inquirers
 	/// <summary>
 	/// Routes specific to retrieve information regarding supported games
 	/// </summary>
-	public interface IGamesInquirer
+	public interface IGamesInquirer : IDisposable
 	{
 		/// <summary>
 		/// Returns a specified game, along with download count, file count and categories.

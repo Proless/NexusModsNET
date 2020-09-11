@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using NexusModsNET.DataModels;
@@ -8,7 +9,7 @@ namespace NexusModsNET.Inquirers
 	/// <summary>
 	/// Routes specific to the current user assigned to this API Key
 	/// </summary>
-	public interface IUserInquirer
+	public interface IUserInquirer : IDisposable
 	{
 		/// <summary>
 		/// Returns a list of all endorsements for the current user

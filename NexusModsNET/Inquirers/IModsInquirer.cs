@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using NexusModsNET.DataModels;
@@ -8,7 +9,7 @@ namespace NexusModsNET.Inquirers
 	/// <summary>
 	/// Mod specific routes (E.g. retrieving latest mods, endorsing a mod)
 	/// </summary>
-	public interface IModsInquirer
+	public interface IModsInquirer : IDisposable
 	{
 		/// <summary>
 		/// Abstain from endorsing a specified mod version

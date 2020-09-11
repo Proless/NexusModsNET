@@ -5,7 +5,7 @@ namespace NexusModsNET.Internals
 	/// <summary>
 	/// A base class for all Inquirer, which is used internally
 	/// </summary>
-	public class InquirerBase
+	public class InquirerBase : IDisposable
 	{
 		#region Fields
 		internal INexusModsClient _client;
@@ -32,6 +32,13 @@ namespace NexusModsNET.Internals
 			string formattedRoute = string.Format(route, routeParams);
 			output = new Uri(new Uri(Routes.BaseAPIURL), formattedRoute);
 			return output;
+		}
+		/// <summary>
+		/// <inheritdoc/>
+		/// </summary>
+		public void Dispose()
+		{
+			_client.Dispose();
 		}
 		#endregion
 	}

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using NexusModsNET.DataModels;
@@ -8,7 +9,7 @@ namespace NexusModsNET.Inquirers
 	/// <summary>
 	/// File specific routes (E.g. retrieving file information, retrieving download link)
 	/// </summary>
-	public interface IModFilesInquirer
+	public interface IModFilesInquirer : IDisposable
 	{
 		/// <summary>
 		/// Looks up a file MD5 file hash and returns an <see cref="IEnumerable{T}"/> of all mod files and the associated mods
