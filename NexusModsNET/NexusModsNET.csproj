@@ -4,13 +4,12 @@
 		<TargetFramework>netstandard2.0</TargetFramework>
 		<GenerateDocumentationFile>true</GenerateDocumentationFile>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-		<Authors>Hasan Darwish</Authors>
+		<Authors>Proless</Authors>
 		<Description>A client for the NexusMods API to process requests and responses as described in the API documentation, it handles the server responses and deserializes the content to .NET objects</Description>
-		<Copyright>Copyright (c) 2020 Hasan Darwish</Copyright>
 		<RepositoryUrl>https://github.com/Proless/NexusModsNET</RepositoryUrl>
 		<PackageProjectUrl>https://github.com/Proless/NexusModsNET</PackageProjectUrl>
 		<PackageTags>nexusmods, api, mods</PackageTags>
-		<PackageReleaseNotes>- implemented the IDisposable interface for the Inquirers</PackageReleaseNotes>
+		<PackageReleaseNotes></PackageReleaseNotes>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
 		<AssemblyVersion>1.0.5.0</AssemblyVersion>
