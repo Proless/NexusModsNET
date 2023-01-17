@@ -21,25 +21,25 @@ namespace NexusModsNET.Inquirers
 		/// <summary>
 		/// Returns an <see cref="IEnumerable{T}"/> of all games, optionally can also return unapproved games
 		/// </summary>
-		/// <param name="include_unapproved">Determines whether to include unapproved games or not</param>
+		/// <param name="includeUnapproved">Determines whether to include unapproved games or not</param>
 		/// <param name="cancellationToken">Enables cancellation of the Http request</param>
 		/// <returns></returns>
-		public Task<IEnumerable<NexusGame>> GetGamesAsync(bool include_unapproved = false, CancellationToken cancellationToken = default)
+		public Task<IEnumerable<NexusGame>> GetGamesAsync(bool includeUnapproved = false, CancellationToken cancellationToken = default)
 		{
-			var requestUri = ConstructRequestURI(Routes.Games.Games_GETAll).AddQuery("include_unapproved", include_unapproved.ToString().ToLower());
-			return _client.ProcessRequestAsync<IEnumerable<NexusGame>>(requestUri, HttpMethod.Get, cancellationToken);
+			var requestUri = ConstructRequestUri(Routes.Games.Games_GETAll).AddQuery("include_unapproved", includeUnapproved.ToString().ToLower());
+			return Client.ProcessRequestAsync<IEnumerable<NexusGame>>(requestUri, HttpMethod.Get, cancellationToken);
 		}
 
 		/// <summary>
 		/// Returns a specified game, along with download count, file count and categories.
 		/// </summary>
-		/// <param name="game_domain">The game domain name</param>
+		/// <param name="gameDomain">The game domain name</param>
 		/// <param name="cancellationToken">Enables cancellation of the Http request</param>
 		/// <returns></returns>
-		public Task<NexusGame> GetGameAsync(string game_domain, CancellationToken cancellationToken = default)
+		public Task<NexusGame> GetGameAsync(string gameDomain, CancellationToken cancellationToken = default)
 		{
-			var requestUri = ConstructRequestURI(Routes.Games.Games_GETOne, game_domain);
-			return _client.ProcessRequestAsync<NexusGame>(requestUri, HttpMethod.Get, cancellationToken);
+			var requestUri = ConstructRequestUri(Routes.Games.Games_GETOne, gameDomain);
+			return Client.ProcessRequestAsync<NexusGame>(requestUri, HttpMethod.Get, cancellationToken);
 		}
 	}
 }

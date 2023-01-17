@@ -8,29 +8,28 @@ namespace NexusModsNET.Internals
 	public class InquirerBase : IDisposable
 	{
 		#region Fields
-		internal INexusModsClient _client;
+		internal readonly INexusModsClient Client;
 		#endregion
 
 		#region Properties
 		/// <summary>
 		/// A manger to get or manage the limits of the API.
 		/// </summary>
-		public IRateLimitsManagement RateLimitsManagement { get { return _client.RateLimitsManagement; } }
+		public IRateLimitsManagement RateLimitsManagement { get { return Client.RateLimitsManagement; } }
 		#endregion
 
 		#region Constructors
 		internal InquirerBase(INexusModsClient client)
 		{
-			_client = client ?? throw new ArgumentNullException(nameof(client));
+			Client = client ?? throw new ArgumentNullException(nameof(client));
 		}
 		#endregion
 
 		#region Helpers
-		internal Uri ConstructRequestURI(string route, params string[] routeParams)
+		internal Uri ConstructRequestUri(string route, params string[] routeParams)
 		{
-			Uri output;
-			string formattedRoute = string.Format(route, routeParams);
-			output = new Uri(new Uri(Routes.BaseAPIURL), formattedRoute);
+			var formattedRoute = string.Format(route, routeParams);
+			var output = new Uri(new Uri(Routes.BaseAPIURL), formattedRoute);
 			return output;
 		}
 		/// <summary>
@@ -38,7 +37,7 @@ namespace NexusModsNET.Internals
 		/// </summary>
 		public void Dispose()
 		{
-			_client.Dispose();
+			Client.Dispose();
 		}
 		#endregion
 	}

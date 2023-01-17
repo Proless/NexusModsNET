@@ -117,7 +117,6 @@ namespace NexusModsNET
 			if (this.CustomDailyLimitExceeded())
 			{
 				DailyLimitsExceeded?.Invoke(this, LimitType.Custom);
-				return;
 			}
 		}
 		#endregion

@@ -18,7 +18,7 @@ namespace NexusModsNET.DataModels
 		public string Email { get; set; }
 
 		[JsonProperty("profile_url")]
-		public Uri ProfileUrl { get; set; }
+		public Uri ProfileAvatarUrl { get; set; }
 
 		[JsonProperty("is_supporter")]
 		public bool IsSupporter { get; set; }

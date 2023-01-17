@@ -15,35 +15,35 @@ namespace NexusModsNET
 		/// <returns>A new <see cref="InfosInquirer"/> instance</returns>
 		IInfosInquirer CreateInfosInquirer(bool withNewClient = false);
 		/// <summary>
-		/// <inheritdoc/>
+		/// 
 		/// </summary>
 		/// <param name="withNewClient">Determines whether to create a new NexusMods client for the new created instance of the Inquirer
 		/// <br/> or reuse the same client instance created while Initializing this factory</param>
 		/// <returns>A new <see cref="UserInquirer"/> instance</returns>
 		IUserInquirer CreateUserInquirer(bool withNewClient = false);
 		/// <summary>
-		/// <inheritdoc/>
+		/// 
 		/// </summary>
 		/// <param name="withNewClient">Determines whether to create a new NexusMods client for the new created instance of the Inquirer
 		/// <br/> or reuse the same client instance created while Initializing this factory</param>
 		/// <returns>A new <see cref="GamesInquirer"/> instance</returns>
 		IGamesInquirer CreateGamesInquirer(bool withNewClient = false);
 		/// <summary>
-		/// <inheritdoc/>
+		/// 
 		/// </summary>
 		/// <param name="withNewClient">Determines whether to create a new NexusMods client for the new created instance of the Inquirer
 		/// <br/> or reuse the same client instance created while Initializing this factory</param>
 		/// <returns>A new <see cref="ModsInquirer"/> instance</returns>
 		IModsInquirer CreateModsInquirer(bool withNewClient = false);
 		/// <summary>
-		/// <inheritdoc/>
+		/// 
 		/// </summary>
 		/// <param name="withNewClient">Determines whether to create a new NexusMods client for the new created instance of the Inquirer
 		/// <br/> or reuse the same client instance created while Initializing this factory</param>
 		/// <returns>A new <see cref="ModFilesInquirer"/> instance</returns>
 		IModFilesInquirer CreateModFilesInquirer(bool withNewClient = false);
 		/// <summary>
-		/// <inheritdoc/>
+		/// 
 		/// </summary>
 		/// <param name="withNewClient">Determines whether to create a new NexusMods client for the new created instance of the Inquirer
 		/// <br/> or reuse the same client instance created while Initializing this factory</param>

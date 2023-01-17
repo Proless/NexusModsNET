@@ -32,18 +32,18 @@ namespace NexusModsNET.Inquirers
 		/// <summary>
 		/// Track a specified mod with the current user
 		/// </summary>
-		/// <param name="game_domain">The game domain name</param>
+		/// <param name="gameDomain">The game domain name</param>
 		/// <param name="modId">The mod Id</param>
 		/// <param name="cancellationToken">Enables cancellation of the Http request</param>
 		/// <returns></returns>
-		Task<NexusMessage> TrackModAsync(string game_domain, long modId, CancellationToken cancellationToken = default);
+		Task<NexusMessage> TrackModAsync(string gameDomain, long modId, CancellationToken cancellationToken = default);
 		/// <summary>
 		/// Stop tracking this mod with the current user
 		/// </summary>
-		/// <param name="game_domain">The game domain name</param>
+		/// <param name="gameDomain">The game domain name</param>
 		/// <param name="modId">The mod Id</param>
 		/// <param name="cancellationToken">Enables cancellation of the Http request</param>
 		/// <returns></returns>
-		Task<NexusMessage> UnTrackModAsync(string game_domain, long modId, CancellationToken cancellationToken = default);
+		Task<NexusMessage> UnTrackModAsync(string gameDomain, long modId, CancellationToken cancellationToken = default);
 	}
 }

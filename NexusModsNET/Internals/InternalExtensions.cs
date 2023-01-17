@@ -39,7 +39,6 @@ namespace NexusModsNET.Internals
 					return "1d";
 				case NexusTimePeriod.Week:
 					return "1w";
-				case NexusTimePeriod.Month:
 				default:
 					return "1m";
 			}

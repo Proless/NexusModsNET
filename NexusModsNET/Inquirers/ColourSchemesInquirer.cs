@@ -25,8 +25,8 @@ namespace NexusModsNET.Inquirers
 		/// <returns></returns>
 		public Task<IEnumerable<NexusColourScheme>> GetColourSchemesAsync(CancellationToken cancellationToken = default)
 		{
-			var requestUri = ConstructRequestURI(Routes.ColourSchemes.ColourSchemes);
-			return _client.ProcessRequestAsync<IEnumerable<NexusColourScheme>>(requestUri, HttpMethod.Get, cancellationToken);
+			var requestUri = ConstructRequestUri(Routes.ColourSchemes.ColourSchemes);
+			return Client.ProcessRequestAsync<IEnumerable<NexusColourScheme>>(requestUri, HttpMethod.Get, cancellationToken);
 		}
 	}
 }

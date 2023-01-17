@@ -17,11 +17,5 @@ namespace NexusModsNET.Internals.Converters
 			}
 			return base.ReadJson(reader, objectType, existingValue, serializer);
 		}
-
-		public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
-		{
-
-			base.WriteJson(writer, value, serializer);
-		}
 	}
 }

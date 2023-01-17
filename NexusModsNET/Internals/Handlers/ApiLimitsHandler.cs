@@ -19,7 +19,7 @@ namespace NexusModsNET.Internals.Handlers
 		/// </summary>
 		/// <param name="responseCallback">A <see cref="Action{T}"/> delegate to process a response message and get the API Limits from the Headers</param>
 		/// <param name="rateLimitsManagement">A class where the custom defined limits will be read before each call request is sent</param>
-		internal ApiLimitsHandler(Action<HttpResponseMessage> responseCallback, IRateLimitsManagement rateLimitsManagement) : base()
+		internal ApiLimitsHandler(Action<HttpResponseMessage> responseCallback, IRateLimitsManagement rateLimitsManagement)
 		{
 			_responseCallback = responseCallback;
 			_apiLimitsManagement = rateLimitsManagement;
