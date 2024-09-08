@@ -1,5 +1,7 @@
 # NexusModsNET
 
+# This library will not be updated as it was programmed as a learning excersie at the time.
+
 A client for the [NexusMods](https://www.nexusmods.com/) API to process requests and responses as described in the API [documentation](https://app.swaggerhub.com/apis-docs/NexusMods/nexus-mods_public_api_params_in_form_data/1.0#/), it handles the server responses and deserializes the content to .NET objects
 
 This is a **.NET Standard 2.0** class library, it is compatible with every .NET Standard 2.0 supported platform as described [here](https://docs.microsoft.com/en-us/dotnet/standard/net-standard) 
